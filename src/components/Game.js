@@ -13,12 +13,14 @@ export default class Game extends React.Component {
   }
 
   clickHandler(i) {
-    let newBoard = this.state.board;
-    newBoard[i] = this.state.turn;
-    this.setState({
-      board: newBoard,
-      turn: this.state.turn === 'X' ? 'O' : 'X',
-    })
+    if (this.state.board[i] === '') {
+      let newBoard = this.state.board;
+      newBoard[i] = this.state.turn;
+      this.setState({
+        board: newBoard,
+        turn: this.state.turn === 'X' ? 'O' : 'X',
+      })
+    }
   }
 
   render() {
