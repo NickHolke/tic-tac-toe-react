@@ -4,12 +4,11 @@ import Square from './Square';
 
 const Border = styled.div`
   display: flex;
-  width: 600px;
-  height: 600px;
+  width: 640px;
+  height: 640px;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
-  border: 1px solid black;
   margin: auto;
 `
 export default function Board ({board, clickHandler}) {
