@@ -9,7 +9,6 @@ const Border = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: flex-start;
-  margin: auto;
 `
 export default function Board ({board, clickHandler}) {
   return(

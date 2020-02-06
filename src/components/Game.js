@@ -1,5 +1,17 @@
 import React from 'react';
 import Board from './Board';
+import styled from 'styled-components';
+
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+`
+
+const SideBar = styled.div`
+  border: 1px solid black;
+  width: 300px;
+`
 
 export default class Game extends React.Component {
   constructor(props) {
@@ -27,10 +39,12 @@ export default class Game extends React.Component {
 
   render() {
     return(
-      <div>
+      <Wrapper>
+        {console.log(this.state.board)}
         <Board board={this.state.board}
         clickHandler={this.clickHandler} />
-      </div>
+        <SideBar></SideBar>
+      </Wrapper>
     )
   }
 }
@@ -38,13 +52,13 @@ export default class Game extends React.Component {
 function isWon(board) {
   let combos = [[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
 
-  combos.forEach((combo) => {
-    if (board[combo[0]] === board[combo[1]] && board[combo[1]] === board[combo[2] && 
-      board[combo[0]]] !== '' && board[combo[1]] !== '' && board[combo[2]] !== '') {
+  for (let i = 0; i < combos.length; i++) {
+    const [a,b,c] = combos[i];
+    if (board[a] !== '' && board[a] === board[b] && board[b] === board[c]) {
       console.log('game won');
       return true;
     }
-  })
+  }
 
   return false;
 }
