@@ -18,7 +18,7 @@ export default function Board ({board, clickHandler}) {
     <Border>
       {board.map((val, idx) => 
         <Square value={val} key={idx} 
-        clickHandler={()=>clickHandler(idx)}/> )}
+        clickHandler={()=>clickHandler(idx, board)}/> )}
     </Border>
   )
 }

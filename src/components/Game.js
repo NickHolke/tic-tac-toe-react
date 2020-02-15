@@ -11,29 +11,35 @@ export default class Game extends React.Component {
     super(props);
 
     this.state = {
-      board: new Array(9).fill(''),
+      history: [{board: new Array(9).fill('')}],
       turn: 'X',
+      round: 0,
     }
     this.clickHandler = this.clickHandler.bind(this);
   }
 
-  clickHandler(i) {
-    if (this.state.board[i] === '') {
-      let newBoard = this.state.board;
-      newBoard[i] = this.state.turn;
+  clickHandler(i, board) {
+    if (board[i] === '') {
+      board[i] = this.state.turn;
+      let history = this.state.history;
+      history.push({board});
+
       this.setState({
-        board: newBoard,
+        history,
         turn: this.state.turn === 'X' ? 'O' : 'X',
+        round: this.state.round + 1,
       }, () => {
-        isWon(this.state.board);
+        isWon(board);
       })
     }
   }
 
   render() {
+    const round = this.state.round;
+    const board = this.state.history[round].board;
     return(
       <Wrapper>
-        <Board board={this.state.board}
+        <Board board={board}
         clickHandler={this.clickHandler} />
       </Wrapper>
     )
