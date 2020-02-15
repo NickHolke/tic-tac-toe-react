@@ -2,15 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Tile = styled.div`
-  width: 200px;
-  height: 200px;
-  margin: 0px 5px 0px 5px;
-  box-sizing: border-box;
-  border: 1px solid black;
+  border: 4px solid #577aa4;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 120px;
+  font-size: 100px;
+  background: #94bbe9;
+  cursor: pointer;
 `
 export default function Square({value, clickHandler}) {
   return (

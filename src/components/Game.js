@@ -5,14 +5,7 @@ import styled from 'styled-components';
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
 `
-
-const SideBar = styled.div`
-  border: 1px solid black;
-  width: 300px;
-`
-
 export default class Game extends React.Component {
   constructor(props) {
     super(props);
@@ -40,10 +33,8 @@ export default class Game extends React.Component {
   render() {
     return(
       <Wrapper>
-        {console.log(this.state.board)}
         <Board board={this.state.board}
         clickHandler={this.clickHandler} />
-        <SideBar></SideBar>
       </Wrapper>
     )
   }
