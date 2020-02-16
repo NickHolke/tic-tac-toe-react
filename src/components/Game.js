@@ -21,6 +21,7 @@ export default class Game extends React.Component {
     }
     this.clickHandler = this.clickHandler.bind(this);
     this.jumpHandler = this.jumpHandler.bind(this);
+    this.restartGame = this.restartGame.bind(this);
   }
 
   clickHandler(i, board) {
@@ -51,6 +52,15 @@ export default class Game extends React.Component {
     })
   }
 
+  restartGame() {
+    this.setState({
+      history: [{board: new Array(9).fill('')}],
+      turn: 'X',
+      round: 0,
+      gameOver: false,
+    });
+  }
+
   render() {
     const round = this.state.round;
     const board = this.state.history[round].board;
@@ -60,7 +70,7 @@ export default class Game extends React.Component {
         clickHandler={this.clickHandler} />
         <MoveHistory history={this.state.history}
         turn={this.state.turn} jumpHandler={this.jumpHandler}
-        gameOver={this.state.gameOver}/>
+        gameOver={this.state.gameOver} restartGame={this.restartGame}/>
       </Wrapper>
     )
   }
