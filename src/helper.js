@@ -5,11 +5,56 @@ const isWon = (board) => {
     const [a,b,c] = combos[i];
     if (board[a] !== '' && board[a] === board[b] && board[b] === board[c]) {
       console.log('game won');
-      return true;
+      return board[a];
     }
+  }
+
+  if (!board.includes('')) {
+    return 'tie';
   }
 
   return false;
 }
 
-export default isWon;
+const minimax = (board, isMaximizing) => {
+  //debugger;
+  let scores = {
+    X: 1,
+    O: -1,
+    tie: 0,
+  }
+  let winner = isWon(board);
+  
+  if (winner) {
+    return scores[winner];
+  }
+
+  if (isMaximizing) {
+    let bestScore = -Infinity;
+    for (let i = 0; i < board.length; i++) {
+      if (board[i] === '') {
+        board[i] = 'X';
+        let score = minimax(board, false);
+        board[i] = '';
+        bestScore = Math.max(bestScore, score);
+      }
+    }
+    return bestScore;
+  } else {
+    let bestScore = Infinity;
+    for (let i = 0; i < board.length; i++) {
+      if (board[i] === '') {
+        board[i] = 'O';
+        let score = minimax(board, true);
+        board[i] = '';
+        bestScore = Math.min(bestScore, score);
+      }
+    }
+    return bestScore;
+  }
+}
+
+export {
+  isWon,
+  minimax,
+}

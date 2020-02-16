@@ -24,11 +24,12 @@ const Li = styled.li`
   cursor: pointer;
 `
 
-const MoveHistory = ({history, turn, jumpHandler, gameOver, restartGame}) => {
-  let winner = turn === 'X' ? 'O' : 'X';
+const MoveHistory = ({history, turn, jumpHandler, winner, restartGame}) => {
+  const move = turn === 'Human' ? 'O' : 'X';
   return (
     <Container>
-      <Span>{gameOver ? `Player ${winner} wins!!` : `Player ${turn} turn`}</Span>
+      <Span>{winner ? `${winner}`: `Player ${move} turn`}</Span>
+      
       <ul>
         {history.map((board, round) => {
           return <Li key={round} onClick={()=> jumpHandler(round)}>Jump to step {round}</Li>
