@@ -4,7 +4,6 @@ import Square from './Square';
 
 const Border = styled.div`
   display: grid;
-  margin: auto;
   border: 4px solid #577aa4;
   border-radius: 10px;
   color: white;
